@@ -6,7 +6,7 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('User_model');
+        $this->load->model(['User_model', 'Login_model']);
     }
 
     public function index()
@@ -22,46 +22,7 @@ class Auth extends CI_Controller
             $this->load->view('auth/login', $data);
         } else {
             // fungsi proses login
-            $this->__login();
-        }
-    }
-
-    private function __login()
-    {
-        // proses login inputan email & password
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
-        // memanggil data dari tabel user untuk email yang login
-        $user = $this->User_model->getUserByEmail($email);
-
-        // jika user ada 
-        if ($user) {
-            // jika user aktif
-            if ($user['user_active'] == 1) {
-                // cek password
-                if (password_verify($password, $user['password'])) {
-                    $data = [
-                        'email' => $user['email'],
-                        'role_id' => $user['role_id']
-                    ];
-                    $this->session->set_userdata($data); // mengambil data session yang login
-                    if ($user['role_id'] == 1) {
-                        redirect('home');
-                    }
-                } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                    Wrong password!</div>');
-                    redirect('auth');
-                }
-            } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                This email has not been activated!</div>');
-                redirect('auth');
-            }
-        } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            Email is not registered!</div>');
-            redirect('auth');
+            $this->Login_model->login();
         }
     }
 
@@ -98,42 +59,10 @@ class Auth extends CI_Controller
             $this->User_model->insertUser($data);
             $this->User_model->insertUserToken($user_token);
             // fungsi kirim email untuk aktivasi email
-            $this->_sendEmail($token, 'verify');
+            $this->Login_model->sendEmail($token, 'verify');
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Successfuly registration. Enjoy your explore!</div>');
             redirect('auth');
-        }
-    }
-
-    private function _sendEmail($token, $type)
-    {
-        //konfigurasi email
-        $config = [
-            'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'testappnamrid@gmail.com',
-            'smtp_pass' => 'PVjVftVoFhkXtBftB0j6',
-            'smtp_port' => 465,
-            'mailtype' => 'html',
-            'charset' => 'utf-8',
-            'newline' => "\r\n"
-        ];
-        $this->email->initialize($config);
-        $this->email->from('testappnamrid@gmail.com', 'CRUD Admin');
-        $this->email->to($this->input->post('email'));
-        if ($type == 'verify') {
-            $this->email->subject('Account Verification');
-            $this->email->message('Click <a href=' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '>here</a> to verify your account.');
-        } else if ($type == 'forgot') {
-            $this->email->subject('Reset Password');
-            $this->email->message('Click <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">here</a> to reset your password.');
-        }
-
-        if ($this->email->send()) {
-            return true;
-        } else {
-            echo $this->email->print_debugger();
-            die;
         }
     }
 
@@ -168,7 +97,7 @@ class Auth extends CI_Controller
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-        Activation failed. Email not registered!</div>');
+        Activation failed. Email not found or not registered!</div>');
             redirect('auth');
         }
     }
@@ -192,7 +121,7 @@ class Auth extends CI_Controller
                 ];
                 $this->User_model->insertUserToken($user_token);
                 // fungsi kirim email untuk verifikasi lupa password
-                $this->_sendEmail($token, 'forgot');
+                $this->Login_model->sendEmail($token, 'forgot');
                 $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
                 Please check your email to reset your password!</div>');
                 redirect('auth/forgotpassword');
@@ -253,7 +182,7 @@ class Auth extends CI_Controller
             $this->User_model->deleteUserToken($email);
             $this->session->unset_userdata('reset_email');
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            Password has been changed please login!</div>');
+            Password has been changed. Please login!</div>');
             redirect('auth');
         }
     }
