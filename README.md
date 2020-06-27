@@ -1,5 +1,5 @@
 # test
-Antoher web application (On Progress)
+Test web application (On Progress)
 
 Jika ingin mencoba nya, harap edit terlebih dahulu pada model login.
 Pada bagian :
