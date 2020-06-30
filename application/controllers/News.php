@@ -26,4 +26,42 @@ class News extends CI_Controller
         $this->load->view('admin/news', $data);
         $this->load->view('templates/footer');
     }
+
+    public function add()
+    {
+        $title = $this->input->post('title');
+        $content = $this->input->post('content');
+        $user = $this->session->userdata('name');
+
+        $upload_image = $_FILES['image']['name'];
+
+        if ($upload_image) {
+            $config = [
+                'upload_path' => './assets/img/news/',
+                'allowed_types' => 'jpg|png|gif',
+                'max_size' => '5120'
+            ];
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('image')) {
+                $new_image = $this->upload->data('file_name');
+                $data = [
+                    'title' => $title,
+                    'content' => $content,
+                    'image' => $new_image,
+                    'create_by' => $user,
+                    'create_date' => time(),
+                    'update_by' => $user,
+                    'update_date' => time(),
+                    'status' => 1
+                ];
+                $this->News_model->insertNews($data);
+            } else {
+                echo $this->upload->display_errors();
+            }
+        }
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Successfuly add news!</div>');
+        redirect('news');
+    }
 }

@@ -5,7 +5,7 @@
     <h1 class="h3 mb-2 text-gray-800">Data News</h1>
     <div class="row mt-4">
         <div class="col-lg-2 mb-2">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProductModel">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewsModal">
                 <i class="fas fa-fw fa-plus-circle"></i> Add News
             </button>
         </div>
@@ -27,7 +27,6 @@
                             <th>Content</th>
                             <th>Image</th>
                             <th>Author</th>
-                            <th>Create Date</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -41,8 +40,11 @@
                                 <td><?= $n['content']; ?></td>
                                 <td><img src="<?= base_url('assets/img/news/') . $n['image']; ?>" class="img-thumbnail" width="80" height="80" style="border: 1px solid;"></td>
                                 <td><?= $n['create_by']; ?></td>
-                                <td><?= $n['create_date']; ?></td>
-                                <td><?= $n['status']; ?></td>
+                                <?php if ($n['status'] == 1) : ?>
+                                    <td>Active</td>
+                                <?php else : ?>
+                                    <td>Non-active</td>
+                                <?php endif; ?>
                                 <td>
                                     <a class="btn btn-success btn-sm" href="" title="Edit" data-toggle="modal" data-target="#editModal<?= $n['id_news']; ?>"><i class="fas fa-fw fa-edit"></i> </a>
                                     <a class="btn btn-danger btn-sm" href="" title="Delete" data-toggle="modal" data-target="#deleteModal<?= $n['id_news']; ?>"><i class="fas fa-fw fa-trash"></i></a>
@@ -56,6 +58,45 @@
     </div>
 </div>
 <!-- /.container-fluid -->
+
+<!-- Modal -->
+<div class="modal fade" id="addNewsModal" tabindex="-1" role="dialog" aria-labelledby="addNewsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addNewsModalLabel">Add News</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url('news/add'); ?>" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="title" class="col-sm-2 col-form-label">Title</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="title" name="title">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="image" class="col-sm-2 col-form-label">Image</label>
+                        <div class="col-sm-10">
+                            <input type="file" class="form-control-file" id="image" name="image" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <textarea name="content" id="editor1" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <!-- End of Main Content -->
 </div>

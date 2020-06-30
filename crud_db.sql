@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Jun 2020 pada 14.43
+-- Waktu pembuatan: 30 Jun 2020 pada 16.05
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -39,6 +39,13 @@ CREATE TABLE `news` (
   `update_date` int(11) NOT NULL,
   `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `news`
+--
+
+INSERT INTO `news` (`id_news`, `title`, `content`, `image`, `create_by`, `create_date`, `update_by`, `update_date`, `status`) VALUES
+(1, 'Pajak Indonesia', '<p>Pajak Indonesia</p>\r\n', 'Test.png', 'Namrid Artupas', 1593525744, 'Namrid Artupas', 1593525744, 1);
 
 -- --------------------------------------------------------
 
@@ -147,7 +154,7 @@ ALTER TABLE `user_token`
 -- AUTO_INCREMENT untuk tabel `news`
 --
 ALTER TABLE `news`
-  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_news` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `product`
