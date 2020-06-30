@@ -47,9 +47,9 @@ class Login_model extends CI_Model
         //konfigurasi email
         $config = [
             'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'testappnamrid@gmail.com',
-            'smtp_pass' => 'PVjVftVoFhkXtBftB0j6',
+            'smtp_host' => 'ssl://smtp.googlemail.com', // host smtp here example : using host gmail
+            'smtp_user' => '', // input your email here 
+            'smtp_pass' => '', // input your password here
             'smtp_port' => 465,
             'mailtype' => 'html',
             'charset' => 'utf-8',
