@@ -19,7 +19,8 @@ class Login_model extends CI_Model
                 if (password_verify($password, $user['password'])) {
                     $data = [
                         'email' => $user['email'],
-                        'role_id' => $user['role_id']
+                        'role_id' => $user['role_id'],
+                        'name' => $user['name'],
                     ];
                     $this->session->set_userdata($data); // mengambil data session yang login
                     if ($user['role_id'] == 1) {
@@ -47,9 +48,9 @@ class Login_model extends CI_Model
         //konfigurasi email
         $config = [
             'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com', // host smtp here example : using host gmail
-            'smtp_user' => '', // input your email here 
-            'smtp_pass' => '', // input your password here
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'testappnamrid@gmail.com',
+            'smtp_pass' => 'PVjVftVoFhkXtBftB0j6',
             'smtp_port' => 465,
             'mailtype' => 'html',
             'charset' => 'utf-8',
