@@ -29,6 +29,19 @@ class News extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function create_news()
+    {
+        $data = [
+            'title' => 'CRUD - Dashboard',
+            'user'  => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
+        ];
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/create_news', $data);
+        $this->load->view('templates/footer');
+    }
+
     public function delete_news($id)
     {
         // query untuk memilih data karyawan berdasarkan id karyawan
