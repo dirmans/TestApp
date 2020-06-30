@@ -6,21 +6,19 @@ class News extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model(['News_model']);
         // cek session jika tidak ada session maka akan dialihkan langsung ke auth
         if (!$this->session->userdata('email')) {
             redirect('auth');
         }
-        $this->load->model('news_model');
-        $this->load->helper('url');
-        $this->load->library('form_validation');
     }
 
     public function index()
     {
         $data = [
-            'title' => 'CRUD - Dashboard',
+            'title' => 'TEST - News',
             'user'  => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
-            'news'  => $this->news_model->archives('news')
+            'news'  => $this->News_model->getAllNews()
         ];
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -44,18 +42,39 @@ class News extends CI_Controller
 
     public function delete_news($id)
     {
-        // query untuk memilih data karyawan berdasarkan id karyawan
-        $image_path = './assets/img/news/';
-        $query_get_image = $this->db->get_where('news', array('id' => $id));
-        foreach ($query_get_image->result() as $record) {
-            // $filename adalah variabel untuk menyimpan path gambar + nama gambar
-            $filename = $image_path . $record->tumbnail;
-            if (unlink($filename)) {
-                // jika menghapus foto yang ada di folder gambar berhasil maka hapus data di database
-                $where = array('id' => $id);
-                $this->news_model->delete_news($where, 'news');
-                redirect('news/');
+        $title = $this->input->post('title');
+        $content = $this->input->post('content');
+        $user = $this->session->userdata('name');
+
+        $upload_image = $_FILES['image']['name'];
+
+        if ($upload_image) {
+            $config = [
+                'upload_path' => './assets/img/news/',
+                'allowed_types' => 'jpg|png|gif',
+                'max_size' => '5120'
+            ];
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('image')) {
+                $new_image = $this->upload->data('file_name');
+                $data = [
+                    'title' => $title,
+                    'content' => $content,
+                    'image' => $new_image,
+                    'create_by' => $user,
+                    'create_date' => time(),
+                    'update_by' => $user,
+                    'update_date' => time(),
+                    'status' => 1
+                ];
+                $this->News_model->insertNews($data);
+            } else {
+                echo $this->upload->display_errors();
             }
         }
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Successfuly add news!</div>');
+        redirect('news');
     }
 }

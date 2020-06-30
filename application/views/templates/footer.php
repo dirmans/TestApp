@@ -55,6 +55,12 @@
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
 
+<!-- CDN CKEditor -->
+<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('editor1');
+</script>
+
 </body>
 
 </html>

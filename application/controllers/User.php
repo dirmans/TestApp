@@ -16,9 +16,11 @@ class User extends CI_Controller
     public function index()
     {
         $email = $this->session->userdata('email');
-        $data['title'] = 'CRUD - User';
-        $data['user'] = $this->User_model->getUserByEmail($email);
-        $data['data'] = $this->User_model->getAllUser();
+        $data = [
+            'title' => 'TEST - User',
+            'user' => $this->User_model->getUserByEmail($email),
+            'data' => $this->User_model->getAllUser()
+        ];
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
