@@ -18,7 +18,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'CRUD - Login';
+            $data['title'] = 'TEST - Login';
             $this->load->view('auth/login', $data);
         } else {
             // fungsi proses login
@@ -37,7 +37,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'CRUD - Registration';
+            $data['title'] = 'TEST - Registration';
             $this->load->view('auth/registration', $data);
         } else {
             $email = $this->input->post('email', true);
@@ -106,7 +106,7 @@ class Auth extends CI_Controller
     {
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'CRUD - Forgot Password';
+            $data['title'] = 'TEST - Forgot Password';
             $this->load->view('auth/forgotpassword', $data);
         } else {
             $email = $this->input->post('email');
@@ -173,7 +173,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]');
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'CRUD - Change Password';
+            $data['title'] = 'TEST - Change Password';
             $this->load->view('auth/changepassword');
         } else {
             $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);

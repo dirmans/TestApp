@@ -5,6 +5,11 @@ class User_model extends CI_Model
 {
 
     // FUNGSI GET DATA
+    public function getAllUser()
+    {
+        return $this->db->get('user')->result_array();
+    }
+
     public function getUserByEmail($email)
     {
         return $this->db->get_where('user', ['email' => $email])->row_array();
@@ -51,5 +56,11 @@ class User_model extends CI_Model
     public function deleteUserToken($email)
     {
         return $this->db->delete('user_token', ['email' => $email]);
+    }
+
+    public function deleteUser($id)
+    {
+        $this->db->where('id_user', $id);
+        return $this->db->delete('user');
     }
 }

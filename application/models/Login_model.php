@@ -61,14 +61,14 @@ class Login_model extends CI_Model
         if ($type == 'verify') {
             $this->email->subject('Account Verification');
             $this->email->message('
-            Hello, for verification your account. You can click this link in below :
-            <br>
+            Hello, for verification your account. You can use this url in below :
+            <br><br>
             <a href="' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">VERIFY ACCOUNT</a>
-            <br>
+            <br><br>
             Enjoy your explore.');
         } else if ($type == 'forgot') {
             $this->email->subject('Reset Password');
-            $this->email->message('Hello, for reset your password. You can click this link in below :
+            $this->email->message('Hello, for reset your password. You can use this url in below :
             <br><br>
             <a href="' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">RESET PASSWORD</a>
             <br><br>

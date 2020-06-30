@@ -24,12 +24,59 @@
         </li>
 
         <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
+        <hr class="sidebar-divider my-0">
 
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
+        <!-- Nav Item - Dashboard -->
+        <?php if ($this->uri->segment(1) == 'user') : ?>
+            <li class="nav-item active">
+            <?php else : ?>
+            <li class="nav-item">
+            <?php endif; ?>
+            <a class="nav-link" href="<?= base_url('user'); ?>">
+                <i class="fas fa-fw fa-table"></i>
+                <span>User</span></a>
+            </li>
+
+            <!-- Nav Item - Dashboard -->
+            <?php if ($this->uri->segment(1) == 'product') : ?>
+                <li class="nav-item active">
+                <?php else : ?>
+                <li class="nav-item">
+                <?php endif; ?>
+                <a class="nav-link" href="<?= base_url('product'); ?>">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Product</span></a>
+                </li>
+
+                <!-- Nav Item - Dashboard -->
+                <?php if ($this->uri->segment(1) == 'news') : ?>
+                    <li class="nav-item active">
+                    <?php else : ?>
+                    <li class="nav-item">
+                    <?php endif; ?>
+                    <a class="nav-link" href="<?= base_url('news'); ?>">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>News</span></a>
+                    </li>
+
+                    <!-- Nav Item - Dashboard -->
+                    <?php if ($this->uri->segment(1) == 'career') : ?>
+                        <li class="nav-item active">
+                        <?php else : ?>
+                        <li class="nav-item">
+                        <?php endif; ?>
+                        <a class="nav-link" href="<?= base_url('career'); ?>">
+                            <i class="fas fa-fw fa-table"></i>
+                            <span>Career</span></a>
+                        </li>
+
+                        <!-- Divider -->
+                        <hr class="sidebar-divider d-none d-md-block">
+
+                        <!-- Sidebar Toggler (Sidebar) -->
+                        <div class="text-center d-none d-md-inline">
+                            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                        </div>
 
 </ul>
 <!-- End of Sidebar -->
