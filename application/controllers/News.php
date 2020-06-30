@@ -28,4 +28,21 @@ class News extends CI_Controller
         $this->load->view('admin/news', $data);
         $this->load->view('templates/footer');
     }
+
+    public function delete_news($id)
+    {
+        // query untuk memilih data karyawan berdasarkan id karyawan
+        $image_path = './assets/img/news/';
+        $query_get_image = $this->db->get_where('news', array('id' => $id));
+        foreach ($query_get_image->result() as $record) {
+            // $filename adalah variabel untuk menyimpan path gambar + nama gambar
+            $filename = $image_path . $record->tumbnail;
+            if (unlink($filename)) {
+                // jika menghapus foto yang ada di folder gambar berhasil maka hapus data di database
+                $where = array('id' => $id);
+                $this->news_model->delete_news($where, 'news');
+                redirect('news/');
+            }
+        }
+    }
 }

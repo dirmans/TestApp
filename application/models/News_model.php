@@ -11,4 +11,10 @@ class News_model extends CI_Model
         $query = $this->db->get($table);
         return $query->result();
     }
+
+    function delete_news($where, $table)
+    {
+        $this->db->where($where);
+        $this->db->delete($table);
+    }
 }
