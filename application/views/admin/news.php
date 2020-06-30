@@ -2,16 +2,41 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Data News</h1>
-    <div class="row mt-4">
+    <h1 class="h3 mb-2 text-gray-800">Data User</h1>
+    <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
+    <!-- <div class="row mt-4">
         <div class="col-lg-2 mb-2">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewsModal">
-                <i class="fas fa-fw fa-plus-circle"></i> Add News
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                Launch demo modal
             </button>
         </div>
-    </div>
-    <?= $this->session->flashdata('message'); ?>
+    </div> -->
+</div>
+<!-- /.container-fluid -->
 
+<!-- Modal Delete-->
+<?php foreach ($news as $u) : ?>
+    <div class="modal fade" id="deleteModal<?= $u->id; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="<?= base_url('news/delete_news/') . $u->id; ?>" method="post" enctype="multipart/form-data">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Are you sure to delete?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <input type="hidden" name="image" value="<?= $u->tumbnail; ?>">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<?php endforeach; ?>
+=======
     <!-- DataTales News -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -97,6 +122,5 @@
         </div>
     </div>
 </div>
-
 <!-- End of Main Content -->
 </div>

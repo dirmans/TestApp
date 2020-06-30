@@ -54,10 +54,18 @@
                     <?php else : ?>
                     <li class="nav-item">
                     <?php endif; ?>
-                    <a class="nav-link" href="<?= base_url('news'); ?>">
-                        <i class="fas fa-fw fa-table"></i>
-                        <span>News</span></a>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>News</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="cards.html">Create News</a>
+                            <a class="collapse-item" href="<?= base_url('news'); ?>">Archives</a>
+                        </div>
+                    </div>
                     </li>
+
 
                     <!-- Nav Item - Dashboard -->
                     <?php if ($this->uri->segment(1) == 'career') : ?>
@@ -77,6 +85,8 @@
                         <div class="text-center d-none d-md-inline">
                             <button class="rounded-circle border-0" id="sidebarToggle"></button>
                         </div>
+
+
 
 </ul>
 <!-- End of Sidebar -->
