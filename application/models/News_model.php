@@ -1,20 +1,23 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
-/**
- * 
- */
 class News_model extends CI_Model
 {
-    function archives($table)
+
+    public function getAllNews()
     {
-        $this->db->order_by("id", "desc");
+        return $this->db->get('news')->result_array();
+    }
+
+    public function archives($table)
+    {
+        $this->db->order_by("id_news", "desc");
         $query = $this->db->get($table);
         return $query->result();
     }
 
-    function delete_news($where, $table)
+    public function insertNews($data)
     {
-        $this->db->where($where);
-        $this->db->delete($table);
+        return $this->db->insert('news', $data);
     }
 }
