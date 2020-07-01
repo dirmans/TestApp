@@ -49,7 +49,7 @@ class Login_model extends CI_Model
         $config = [
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'testappnamrid@gmail.com',
+            'smtp_user' => 'testappnamrid@gmail.com', // ganti sesuai email anda 
             'smtp_pass' => 'PVjVftVoFhkXtBftB0j6',
             'smtp_port' => 465,
             'mailtype' => 'html',
