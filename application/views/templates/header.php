@@ -21,6 +21,8 @@
     <!-- Custom styles for this page -->
     <link href="<?= base_url('assets/'); ?>vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+    <!-- CDN CKEditor -->
+    <script src="https://cdn.ckeditor.com/4.14.1/full-all/ckeditor.js"></script>
 
 </head>
 

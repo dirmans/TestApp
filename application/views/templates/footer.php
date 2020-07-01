@@ -55,10 +55,12 @@
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
 
-<!-- CDN CKEditor -->
-<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+<!-- CDN FontAwesome 6 -->
+<script src="https://kit.fontawesome.com/364dbf52ab.js" crossorigin="anonymous"></script>
+
 <script>
     CKEDITOR.replace('editor1');
+    CKEDITOR.replace('editor2');
 </script>
 
 </body>

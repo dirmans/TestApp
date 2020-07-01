@@ -9,23 +9,83 @@
 	<!-- Content Row -->
 	<div class="row">
 
-	</div>
-	<div class="card mb-3 col-lg-8 my-auto" style="max-width: 560px;">
-		<div class="row no-gutters">
-			<div class="col-md-4">
-				<img src="<?= base_url('assets/img/profile/') . $user['image']; ?>" class="card-img mx-5" style="width:60%; margin-top: 6px">
-			</div>
-			<div class="col-md-8">
+		<!-- Earnings (Monthly) Card Example -->
+		<div class="col-xl-3 col-md-6 mb-4">
+			<div class="card border-left-primary shadow h-100 py-2">
 				<div class="card-body">
-					<h5 class="card-title"><?= $user['name']; ?></h5>
-					<p class="card-text"><?= $user['email']; ?></p>
-					<p class="card-text">What is Lorem Ipsum?
-						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-calendar fa-2x text-gray-300"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Earnings (Monthly) Card Example -->
+		<div class="col-xl-3 col-md-6 mb-4">
+			<div class="card border-left-success shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Earnings (Monthly) Card Example -->
+		<div class="col-xl-3 col-md-6 mb-4">
+			<div class="card border-left-info shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
+							<div class="row no-gutters align-items-center">
+								<div class="col-auto">
+									<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+								</div>
+								<div class="col">
+									<div class="progress progress-sm mr-2">
+										<div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Pending Requests Card Example -->
+		<div class="col-xl-3 col-md-6 mb-4">
+			<div class="card border-left-warning shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-comments fa-2x text-gray-300"></i>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- /.container-fluid -->
 
 </div>
 <!-- End of Main Content -->

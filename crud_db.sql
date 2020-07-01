@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Jun 2020 pada 16.05
+-- Waktu pembuatan: 01 Jul 2020 pada 04.26
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.9
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `news` (
   `id_news` int(11) NOT NULL,
   `title` varchar(128) NOT NULL,
-  `content` varchar(256) NOT NULL,
+  `content` text NOT NULL,
   `image` varchar(128) NOT NULL,
   `create_by` varchar(128) NOT NULL,
   `create_date` int(11) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id_news`, `title`, `content`, `image`, `create_by`, `create_date`, `update_by`, `update_date`, `status`) VALUES
-(1, 'Pajak Indonesia', '<p>Pajak Indonesia</p>\r\n', 'Test.png', 'Namrid Artupas', 1593525744, 'Namrid Artupas', 1593525744, 1);
+(1, 'Pajak Indonesia', '<h2>What is Lorem Ipsum?</h2>\r\n\r\n<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\r\n\r\n<h2>Why do we use it?</h2>\r\n\r\n<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\r\n', 'Loliaet_Selfia_Situmorang_HRGA_0450814.jpg', 'Namrid Artupas', 1593525744, 'Namrid Artupas', 1593565988, 1);
 
 -- --------------------------------------------------------
 
@@ -95,7 +95,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `name`, `email`, `password`, `image`, `user_active`, `role_id`) VALUES
-(11, 'Namrid Artupas', 'testappnamrid@gmail.com', '$2y$10$9UDDNXTR77WGxtQDydmOv.qN5V3QIPWNTCgTzpJUTDdhfJt1KPSLq', 'Screenshot_20200504-124904.png', 1, 1);
+(11, 'Namrid Artupas', 'testappnamrid@gmail.com', '$2y$10$9UDDNXTR77WGxtQDydmOv.qN5V3QIPWNTCgTzpJUTDdhfJt1KPSLq', 'IMG_0660.JPG', 1, 1);
 
 -- --------------------------------------------------------
 
