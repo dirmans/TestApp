@@ -8,9 +8,7 @@ class News extends CI_Controller
         parent::__construct();
         $this->load->model(['News_model']);
         // cek session jika tidak ada session maka akan dialihkan langsung ke auth
-        if (!$this->session->userdata('email')) {
-            redirect('auth');
-        }
+        session_check();
     }
 
     public function index()
@@ -78,6 +76,7 @@ class News extends CI_Controller
         $user = $this->session->userdata('name');
         $id_news = $this->input->post('id_news');
         $old_image = $this->input->post('old_image');
+        $status = $this->input->post('status');
 
         // cek jika ada gambar yang akan di upload
         $upload_image = $_FILES['image']['name'];
@@ -102,7 +101,8 @@ class News extends CI_Controller
             'title' => $title,
             'content' => $content,
             'update_by' => $user,
-            'update_date' => time()
+            'update_date' => time(),
+            'status' => $status
         ];
         $this->News_model->updateNews($data, $id_news);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Successfuly add news!</div>');

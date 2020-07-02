@@ -9,9 +9,7 @@ class Product extends CI_Controller
         parent::__construct();
         $this->load->model(['Product_model', 'User_model']);
         // cek session jika tidak ada session maka akan dialihkan langsung ke auth
-        if (!$this->session->userdata('email')) {
-            redirect('auth');
-        }
+        session_check();
     }
 
     public function index()

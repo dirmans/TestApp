@@ -5,24 +5,24 @@ class Product_model extends CI_Model
 {
 
     // FUNGSI GET
-    public function getAllProduct()
+    function getAllProduct()
     {
         return $this->db->get('product')->result_array();
     }
 
-    public function getProdcutByActive()
+    function getProdcutByActive()
     {
         return $this->db->get_where('product', ['status' => '1']);
     }
 
     // FUNGSI INSERT
-    public function insertProduct($data)
+    function insertProduct($data)
     {
         return $this->db->insert('product', $data);
     }
 
     // FUNGSI UPDATE
-    public function updateProduct($data, $code)
+    function updateProduct($data, $code)
     {
         $this->db->set($data);
         $this->db->where('code_product', $code);
@@ -30,7 +30,7 @@ class Product_model extends CI_Model
     }
 
     // FUNGSI DELETE
-    public function deleteProduct($id)
+    function deleteProduct($id)
     {
         $this->db->where('id_product', $id);
         return $this->db->delete('product');

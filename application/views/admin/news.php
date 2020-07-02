@@ -127,8 +127,19 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-12">
+                            <label for="content" class="col-sm-2 col-form-label">Content</label>
+                            <div class="col-sm-10">
                                 <textarea name="content" id="editor2" cols="30" rows="10"><?= $n['content']; ?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-2 col-form-label">Status</label>
+                            <div class="col-sm-10">
+                                <select name="status" id="status" class="form-control">
+                                    <option value="<?= $n['status']; ?>"><?= $n['status']; ?></option>
+                                    <option value="1">Active</option>
+                                    <option value="0">Non-active</option>
+                                </select>
                             </div>
                         </div>
                     </div>

@@ -32,6 +32,7 @@
         </div>
 
         <!-- Nav Item - User -->
+
         <?php if ($this->uri->segment(1) == 'user') : ?>
             <li class="nav-item active">
             <?php else : ?>

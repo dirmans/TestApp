@@ -104,7 +104,7 @@
                                     <label for="name" class="col-sm-2 col-form-label">Status</label>
                                     <div class="col-sm-10">
                                         <select name="user_active" id="user_active" class="form-control">
-                                            <option value="<?= $u['user_active']; ?>">Active</option>
+                                            <option value="<?= $u['user_active']; ?>"><?= $u['status']; ?></option>
                                             <option value="1">Active</option>
                                             <option value="0">Non-active</option>
                                         </select>

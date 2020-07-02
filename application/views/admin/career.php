@@ -2,20 +2,20 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Data Product</h1>
+    <h1 class="h3 mb-2 text-gray-800">Data Career</h1>
     <div class="row mt-4">
         <div class="col-lg-2 mb-2">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProductModel">
-                <i class="fas fa-fw fa-plus-circle"></i> Add Product
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCareerModal">
+                <i class="fas fa-fw fa-plus-circle"></i> Add Career
             </button>
         </div>
     </div>
 
     <?= $this->session->flashdata('message'); ?>
-    <!-- DataTales Product -->
+    <!-- DataTales Career -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">List Product </h6>
+            <h6 class="m-0 font-weight-bold text-primary">List Career </h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -23,31 +23,29 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Code Product</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Image</th>
+                            <th>Code Career</th>
+                            <th>Title</th>
+                            <th>Content</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $i = 1; ?>
-                        <?php foreach ($data as $p) : ?>
+                        <?php foreach ($career as $c) : ?>
                             <tr>
                                 <td><?= $i++; ?></td>
-                                <td><?= $p['code_product']; ?></td>
-                                <td><?= $p['name']; ?></td>
-                                <td><?= $p['category']; ?></td>
-                                <td><img src="<?= base_url('assets/img/product/') . $p['image']; ?>" class="img-thumbnail" width="80" height="80" style="border: 1px solid;"></td>
-                                <?php if ($p['status'] == 1) : ?>
+                                <td><?= $c['code_career']; ?></td>
+                                <td><?= $c['title']; ?></td>
+                                <td style="word-wrap: break-word;min-width: 200px;max-width: 600px;"><?= htmlspecialchars($c['content']); ?></td>
+                                <?php if ($c['status'] == 1) : ?>
                                     <td>Active</td>
                                 <?php else : ?>
                                     <td>Non-active</td>
                                 <?php endif; ?>
                                 <td>
-                                    <a class="btn btn-success btn-sm" href="" title="Edit" data-toggle="modal" data-target="#editModal<?= $p['id_product']; ?>"><i class="fas fa-fw fa-edit"></i> </a>
-                                    <a class="btn btn-danger btn-sm" href="" title="Delete" data-toggle="modal" data-target="#deleteModal<?= $p['id_product']; ?>"><i class="fas fa-fw fa-trash"></i></a>
+                                    <a class="btn btn-success btn-sm" href="" title="Edit" data-toggle="modal" data-target="#editModalCareer<?= $c['id_career']; ?>"><i class="fas fa-fw fa-edit"></i> </a>
+                                    <a class="btn btn-danger btn-sm" href="" title="Delete" data-toggle="modal" data-target="#deleteModalCareer<?= $c['id_career']; ?>"><i class="fas fa-fw fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -61,12 +59,12 @@
 <!-- /.container-fluid -->
 
 <!-- Modal Add -->
-<div class="modal fade" id="addProductModel" tabindex="-1" role="dialog" aria-labelledby="addProductModelLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <form action="<?= base_url('product/add'); ?>" method="post" enctype="multipart/form-data">
+<div class="modal fade" id="addCareerModal" tabindex="-1" role="dialog" aria-labelledby="addCareerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <form action="<?= base_url('career/add'); ?>" method="post" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addProductModelLabel">Add Product</h5>
+                    <h5 class="modal-title" id="addCareerModalLabel">Add Career</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -75,27 +73,21 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-group row">
-                                <label for="code_product" class="col-sm-2 col-form-label">Code Product</label>
+                                <label for="code_career" class="col-sm-2 col-form-label">Code Career</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="code_product" name="code_product">
+                                    <input type="text" class="form-control" id="code_career" name="code_career">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                                <label for="title" class="col-sm-2 col-form-label">Title</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" name="name">
+                                    <input type="text" class="form-control" id="title" name="title">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="category" class="col-sm-2 col-form-label">Category</label>
+                                <label for="content" class="col-sm-2 col-form-label">Content</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="category" name="category">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="image" class="col-sm-2 col-form-label">Image</label>
-                                <div class="col-sm-10">
-                                    <input type="file" class="form-control-file" id="image" name="image" required>
+                                    <textarea name="content" id="editor1" cols="30" rows="10"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -112,60 +104,45 @@
 <!-- End Modal Add -->
 
 <!-- Modal Edit-->
-<?php foreach ($data as $p) : ?>
-    <div class="modal fade" id="editModal<?= $p['id_product']; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+<?php foreach ($career as $c) : ?>
+    <div class="modal fade" id="editModalCareer<?= $c['id_career']; ?>" tabindex="-1" role="dialog" aria-labelledby="editModalCareerLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editModalLabel">Edit Product</h5>
+                    <h5 class="modal-title" id="editModalCareerLabel">Edit Career</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('product/edit'); ?>" method="post" enctype="multipart/form-data">
+                <form action="<?= base_url('career/edit'); ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-lg-12">
                                 <!-- Fungsi Edit -->
                                 <div class="form-group row">
-                                    <label for="code_product" class="col-sm-2 col-form-label">Code Product</label>
+                                    <label for="code_career" class="col-sm-2 col-form-label">Code Career</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="code_product" name="code_product" value="<?= $p['code_product']; ?>" readonly>
+                                        <input type="hidden" class="form-control" id="id_career" name="id_career" value="<?= $c['id_career']; ?>" readonly>
+                                        <input type="text" class="form-control" id="code_career" name="code_career" value="<?= $c['code_career']; ?>" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                                    <label for="title" class="col-sm-2 col-form-label">Title</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="name" name="name" value="<?= $p['name']; ?>">
+                                        <input type="text" class="form-control" id="title" name="title" value="<?= $c['title']; ?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="category" class="col-sm-2 col-form-label">Category</label>
+                                    <label for="content" class="col-sm-2 col-form-label">Content</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="category" name="category" value="<?= $p['category']; ?>">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-2">Picture</div>
-                                    <div class="col-sm-10">
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <img src="<?= base_url('assets/img/product/') . $p['image']; ?>" class="img-thumbnail">
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <div class="form-group">
-                                                    <input type="hidden" id="old_image" name="old_image" value="<?= $p['image']; ?>">
-                                                    <input type="file" class="form-control-file" id="image" name="image">
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <textarea name="content" id="editor2" cols="30" rows="10"><?= $c['content']; ?></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-2 col-form-label">Status</label>
                                     <div class="col-sm-10">
                                         <select name="status" id="status" class="form-control">
-                                            <option value="<?= $p['status']; ?>"><?= $p['status']; ?></option>
+                                            <option value="<?= $c['status']; ?>"><?= $c['status']; ?></option>
                                             <option value="1">Active</option>
                                             <option value="0">Non-active</option>
                                         </select>
@@ -187,18 +164,17 @@
 <!-- End Modal Edit -->
 
 <!-- Modal Delete-->
-<?php foreach ($data as $p) : ?>
-    <div class="modal fade" id="deleteModal<?= $p['id_product']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<?php foreach ($career as $c) : ?>
+    <div class="modal fade" id="deleteModalCareer<?= $c['id_career']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalCareerLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="<?= base_url('product/delete/') . $p['id_product']; ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('career/delete/') . $c['id_career']; ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Are you sure to delete this user ?</h5>
+                        <h5 class="modal-title" id="deleteModalCareerLabel">Are you sure to delete this user ?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <input type="hidden" name="image" value="<?= $p['image']; ?>">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-danger">Delete</button>
