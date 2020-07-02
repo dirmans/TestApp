@@ -59,6 +59,12 @@
 <script src="https://kit.fontawesome.com/364dbf52ab.js" crossorigin="anonymous"></script>
 
 <script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('#message').slideUp("slow");
+        }, 2000);
+    });
+
     CKEDITOR.replace('editor1');
     CKEDITOR.replace('editor2');
 </script>

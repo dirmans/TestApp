@@ -41,7 +41,7 @@ class Career extends CI_Controller
             'status' => 1
         ];
         $this->Career_model->insertCareer($data);
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data career has been created!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert" id="message">Data career has been created!</div>');
         redirect('career');
     }
 
@@ -63,7 +63,7 @@ class Career extends CI_Controller
             'status' => $status
         ];
         $this->Career_model->updateCareer($data, $id);
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data career has been updated!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert" id="message">Data career has been updated!</div>');
         redirect('career');
     }
 }

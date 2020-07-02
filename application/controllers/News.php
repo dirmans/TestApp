@@ -65,7 +65,7 @@ class News extends CI_Controller
                 echo $this->upload->display_errors();
             }
         }
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Successfuly add news!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert" id="message">Successfuly add news!</div>');
         redirect('news');
     }
 
@@ -105,7 +105,7 @@ class News extends CI_Controller
             'status' => $status
         ];
         $this->News_model->updateNews($data, $id_news);
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Successfuly add news!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert" id="message">Successfuly add news!</div>');
         redirect('news');
     }
 
@@ -117,7 +117,7 @@ class News extends CI_Controller
             unlink(FCPATH . './assets/img/news/' . $image);
         }
         $this->News_model->deleteNews($id);
-        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Successfuly delete news!</div>');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert" id="message">Successfuly delete news!</div>');
         redirect('news');
     }
 }

@@ -10,7 +10,6 @@
             </button>
         </div>
     </div>
-
     <?= $this->session->flashdata('message'); ?>
     <!-- DataTales Career -->
     <div class="card shadow mb-4">
@@ -142,7 +141,11 @@
                                     <label for="name" class="col-sm-2 col-form-label">Status</label>
                                     <div class="col-sm-10">
                                         <select name="status" id="status" class="form-control">
-                                            <option value="<?= $c['status']; ?>"><?= $c['status']; ?></option>
+                                            <?php if ($c['status']  == 1) : ?>
+                                                <option value="<?= $c['status']; ?>">Active</option>
+                                            <?php else : ?>
+                                                <option value="<?= $c['status']; ?>">Non-active</option>
+                                            <?php endif; ?>
                                             <option value="1">Active</option>
                                             <option value="0">Non-active</option>
                                         </select>

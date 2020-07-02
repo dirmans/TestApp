@@ -165,7 +165,11 @@
                                     <label for="name" class="col-sm-2 col-form-label">Status</label>
                                     <div class="col-sm-10">
                                         <select name="status" id="status" class="form-control">
-                                            <option value="<?= $p['status']; ?>"><?= $p['status']; ?></option>
+                                            <?php if ($p['status']  == 1) : ?>
+                                                <option value="<?= $p['status']; ?>">Active</option>
+                                            <?php else : ?>
+                                                <option value="<?= $p['status']; ?>">Non-active</option>
+                                            <?php endif; ?>
                                             <option value="1">Active</option>
                                             <option value="0">Non-active</option>
                                         </select>
