@@ -27,22 +27,28 @@ class News extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    private function _uploadConfig()
+    {
+        $config = [
+            'upload_path' => './assets/img/news/',
+            'allowed_types' => 'jpg|png|gif',
+            'max_size' => '5120'
+        ];
+        $this->load->library('upload', $config);
+    }
+
     public function add()
     {
         $title = $this->input->post('title');
         $content = $this->input->post('content');
         $user = $this->session->userdata('name');
 
+        // cek jika ada gambar yang akan di upload
         $upload_image = $_FILES['image']['name'];
 
         if ($upload_image) {
-            $config = [
-                'upload_path' => './assets/img/news/',
-                'allowed_types' => 'jpg|png|gif',
-                'max_size' => '5120'
-            ];
-
-            $this->load->library('upload', $config);
+            // load fungsi config upload
+            $this->_uploadConfig();
 
             if ($this->upload->do_upload('image')) {
                 $new_image = $this->upload->data('file_name');
@@ -62,6 +68,56 @@ class News extends CI_Controller
             }
         }
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Successfuly add news!</div>');
+        redirect('news');
+    }
+
+    public function edit()
+    {
+        $title = $this->input->post('title');
+        $content = $this->input->post('content');
+        $user = $this->session->userdata('name');
+        $id_news = $this->input->post('id_news');
+        $old_image = $this->input->post('old_image');
+
+        // cek jika ada gambar yang akan di upload
+        $upload_image = $_FILES['image']['name'];
+
+        if ($upload_image) {
+            // load fungsi config upload
+            $this->_uploadConfig();
+
+            if ($this->upload->do_upload('image')) {
+                $new_image = $this->upload->data('file_name');
+                if ($old_image != $new_image) {
+                    unlink(FCPATH . './assets/img/news/' . $old_image);
+                }
+                $this->db->set('image', $new_image);
+                $this->db->where('id_news', $id_news);
+                $this->db->update('news');
+            } else {
+                echo $this->upload->display_errors();
+            }
+        }
+        $data = [
+            'title' => $title,
+            'content' => $content,
+            'update_by' => $user,
+            'update_date' => time()
+        ];
+        $this->News_model->updateNews($data, $id_news);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Successfuly add news!</div>');
+        redirect('news');
+    }
+
+    public function delete()
+    {
+        $id = $this->uri->segment(3);
+        $image = $this->input->post('image');
+        if ($image) {
+            unlink(FCPATH . './assets/img/news/' . $image);
+        }
+        $this->News_model->deleteNews($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Successfuly delete news!</div>');
         redirect('news');
     }
 }

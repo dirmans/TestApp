@@ -2,41 +2,16 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Data User</h1>
-    <!-- <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
-    <!-- <div class="row mt-4">
+    <h1 class="h3 mb-2 text-gray-800">Data News</h1>
+    <div class="row mt-4">
         <div class="col-lg-2 mb-2">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Launch demo modal
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewsModal">
+                <i class="fas fa-fw fa-plus-circle"></i> Add News
             </button>
         </div>
-    </div> -->
-</div>
-<!-- /.container-fluid -->
-
-<!-- Modal Delete-->
-<?php foreach ($news as $u) : ?>
-    <div class="modal fade" id="deleteModal<?= $u->id; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form action="<?= base_url('news/delete_news/') . $u->id; ?>" method="post" enctype="multipart/form-data">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Are you sure to delete?</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <input type="hidden" name="image" value="<?= $u->tumbnail; ?>">
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </div>
-                </div>
-            </form>
-        </div>
     </div>
-<?php endforeach; ?>
-=======
+    <?= $this->session->flashdata('message'); ?>
+
     <!-- DataTales News -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -62,7 +37,7 @@
                             <tr>
                                 <td><?= $i++; ?></td>
                                 <td><?= $n['title']; ?></td>
-                                <td><?= $n['content']; ?></td>
+                                <td style="word-wrap: break-word;min-width: 200px;max-width: 250px;"><?= htmlspecialchars($n['content']); ?></td>
                                 <td><img src="<?= base_url('assets/img/news/') . $n['image']; ?>" class="img-thumbnail" width="80" height="80" style="border: 1px solid;"></td>
                                 <td><?= $n['create_by']; ?></td>
                                 <?php if ($n['status'] == 1) : ?>
@@ -71,8 +46,8 @@
                                     <td>Non-active</td>
                                 <?php endif; ?>
                                 <td>
-                                    <a class="btn btn-success btn-sm" href="" title="Edit" data-toggle="modal" data-target="#editModal<?= $n['id_news']; ?>"><i class="fas fa-fw fa-edit"></i> </a>
-                                    <a class="btn btn-danger btn-sm" href="" title="Delete" data-toggle="modal" data-target="#deleteModal<?= $n['id_news']; ?>"><i class="fas fa-fw fa-trash"></i></a>
+                                    <a class="btn btn-success btn-sm" href="" title="Edit" data-toggle="modal" data-target="#editNewsModal<?= $n['id_news']; ?>"><i class="fas fa-fw fa-edit"></i> </a>
+                                    <a class="btn btn-danger btn-sm" href="" title="Delete" data-toggle="modal" data-target="#deleteNewsModal<?= $n['id_news']; ?>"><i class="fas fa-fw fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -84,7 +59,7 @@
 </div>
 <!-- /.container-fluid -->
 
-<!-- Modal -->
+<!-- Modal Add News -->
 <div class="modal fade" id="addNewsModal" tabindex="-1" role="dialog" aria-labelledby="addNewsModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -122,5 +97,76 @@
         </div>
     </div>
 </div>
+<!-- Modal End News -->
+
+<!-- Modal Edit News -->
+<?php foreach ($news as $n) : ?>
+    <div class="modal fade" id="editNewsModal<?= $n['id_news']; ?>" tabindex="-1" role="dialog" aria-labelledby="editNewsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editNewsModalLabel">Edit News</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('news/edit'); ?>" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="title" class="col-sm-2 col-form-label">Title</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" id="id_news" name="id_news" value="<?= $n['id_news']; ?>">
+                                <input type="text" class="form-control" id="title" name="title" value="<?= $n['title']; ?>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="image" class="col-sm-2 col-form-label">Image</label>
+                            <div class="col-sm-10">
+                                <input type="hidden" id="old_image" name="old_image" value="<?= $n['image']; ?>">
+                                <input type="file" class="form-control-file" id="image" name="image">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <textarea name="content" id="editor2" cols="30" rows="10"><?= $n['content']; ?></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+<!-- Modal End Edit News -->
+
+
+<!-- Modal Delete News -->
+<?php foreach ($news as $n) : ?>
+    <div class="modal fade" id="deleteModal<?= $n['id_news']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="<?= base_url('news/delete/') . $n['id_news']; ?>" method="post" enctype="multipart/form-data">
+                <div class="modal-content">
+                    <div class="modal-header modal-primary">
+                        <h5 class="modal-title" id="deleteModalLabel">Are you sure to delete this user ?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <input type="hidden" name="image" value="<?= $n['image']; ?>">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<?php endforeach; ?>
+<!-- End Modal Delete News -->
+
 <!-- End of Main Content -->
 </div>
