@@ -23,4 +23,11 @@ class Career_model extends CI_Model
         $this->db->where('id_career', $id);
         return $this->db->update('career');
     }
+
+    // FUNGSI DELETE CAREER
+    function deleteCareer($id)
+    {
+        $this->db->where('id_career', $id);
+        return $this->db->delete('career');
+    }
 }

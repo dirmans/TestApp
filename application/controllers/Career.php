@@ -27,6 +27,8 @@ class Career extends CI_Controller
 
     public function add()
     {
+        $this->form_validation->set_rules('title', 'Title', 'required|trim');
+
         $code = $this->input->post('code_career');
         $title = $this->input->post('title');
         $content = $this->input->post('content');
@@ -47,6 +49,8 @@ class Career extends CI_Controller
 
     public function edit()
     {
+        $this->form_validation->set_rules('title', 'Title', 'required|trim');
+
         $id = $this->input->post('id_career');
         $code = $this->input->post('code_career');
         $title = $this->input->post('title');
@@ -64,6 +68,14 @@ class Career extends CI_Controller
         ];
         $this->Career_model->updateCareer($data, $id);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert" id="message">Data career has been updated!</div>');
+        redirect('career');
+    }
+
+    public function delete()
+    {
+        $id = $this->uri->segment(3);
+        $this->Career_model->deleteCareer($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert" id="message">Successfuly delete career!</div>');
         redirect('career');
     }
 }

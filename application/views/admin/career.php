@@ -41,7 +41,7 @@
                                 <td><?= $i++; ?></td>
                                 <td><?= $c['code_career']; ?></td>
                                 <td><?= $c['title']; ?></td>
-                                <td style="word-wrap: break-word;min-width: 200px;max-width: 600px;"><?= htmlspecialchars($c['content']); ?></td>
+                                <td style="word-wrap: break-word;min-width: 200px;max-width: 900px;"><?= htmlspecialchars($c['content']); ?></td>
                                 <?php if ($c['status'] == 1) : ?>
                                     <td>Active</td>
                                 <?php else : ?>
@@ -79,19 +79,19 @@
                             <div class="form-group row">
                                 <label for="code_career" class="col-sm-2 col-form-label">Code Career</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="code_career" name="code_career">
+                                    <input type="text" class="form-control" id="code_career" name="code_career" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="title" class="col-sm-2 col-form-label">Title</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="title" name="title">
+                                    <input type="text" class="form-control" id="title" name="title" required>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="content" class="col-sm-2 col-form-label">Content</label>
                                 <div class="col-sm-10">
-                                    <textarea name="content" id="editor1" cols="30" rows="10"></textarea>
+                                    <textarea name="content" id="editor1" cols="30" rows="10" required></textarea>
                                 </div>
                             </div>
                         </div>

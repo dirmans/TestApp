@@ -42,7 +42,7 @@
                             <tr>
                                 <td><?= $i++; ?></td>
                                 <td><?= $n['title']; ?></td>
-                                <td style="word-wrap: break-word;min-width: 200px;max-width: 250px;"><?= htmlspecialchars($n['content']); ?></td>
+                                <td style="word-wrap: break-word;min-width: 200px;max-width: 800px;"><?= htmlspecialchars($n['content']); ?></td>
                                 <td><img src="<?= base_url('assets/img/news/') . $n['image']; ?>" class="img-thumbnail image-link" href="<?= base_url('assets/img/news/') . $n['image']; ?>" title="Click here to zoom image." width="80" height="80" style="border: 1px solid;"></td>
                                 <td><?= $n['create_by']; ?></td>
                                 <?php if ($n['status'] == 1) : ?>
@@ -79,7 +79,7 @@
                     <div class="form-group row">
                         <label for="title" class="col-sm-2 col-form-label">Title</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="title" name="title">
+                            <input type="text" class="form-control" id="title" name="title" required>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -90,7 +90,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <textarea name="content" id="editor1" cols="30" rows="10"></textarea>
+                            <textarea name="content" id="editor1" cols="30" rows="10" required></textarea>
                         </div>
                     </div>
                 </div>
@@ -166,12 +166,12 @@
 
 <!-- Modal Delete News -->
 <?php foreach ($news as $n) : ?>
-    <div class="modal fade" id="deleteModal<?= $n['id_news']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteNewsModal<?= $n['id_news']; ?>" tabindex="-1" role="dialog" aria-labelledby="deleteNewsModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <form action="<?= base_url('news/delete/') . $n['id_news']; ?>" method="post" enctype="multipart/form-data">
                 <div class="modal-content">
                     <div class="modal-header modal-primary">
-                        <h5 class="modal-title" id="deleteModalLabel">Are you sure to delete this user ?</h5>
+                        <h5 class="modal-title" id="deleteNewsModalLabel">Are you sure to delete this user ?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
