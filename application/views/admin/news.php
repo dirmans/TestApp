@@ -38,7 +38,7 @@
                                 <td><?= $i++; ?></td>
                                 <td><?= $n['title']; ?></td>
                                 <td style="word-wrap: break-word;min-width: 200px;max-width: 250px;"><?= htmlspecialchars($n['content']); ?></td>
-                                <td><img src="<?= base_url('assets/img/news/') . $n['image']; ?>" class="img-thumbnail" width="80" height="80" style="border: 1px solid;"></td>
+                                <td><img src="<?= base_url('assets/img/news/') . $n['image']; ?>" class="img-thumbnail image-link" href="<?= base_url('assets/img/news/') . $n['image']; ?>" title="Click here to zoom image." width="80" height="80" style="border: 1px solid;"></td>
                                 <td><?= $n['create_by']; ?></td>
                                 <?php if ($n['status'] == 1) : ?>
                                     <td>Active</td>

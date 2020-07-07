@@ -12,7 +12,7 @@
         <div class="card card-primary card-outline">
             <div class="card-body">
                 <div class="text-center">
-                    <img class="img-thumbnail mb-4" src="<?= base_url('assets/img/profile/') . $user['image']; ?>" width="200" height="200">
+                    <img class="img-thumbnail image-link mb-4" title="Click here to zoom image." href="<?= base_url('assets/img/profile/') . $user['image']; ?>" src="<?= base_url('assets/img/profile/') . $user['image']; ?>" width="200" height="200">
                 </div>
                 <h3 class="profile-username text-center"><?= $user['name']; ?></h3>
                 <p class="text-muted text-center"><?= $user['email']; ?></p>

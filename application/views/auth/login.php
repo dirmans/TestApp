@@ -80,6 +80,13 @@
     <!-- Custom scripts for all pages-->
     <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('#message').slideUp("slow");
+            }, 2000);
+        });
+    </script>
 </body>
 
 </html>

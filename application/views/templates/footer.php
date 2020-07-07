@@ -55,14 +55,23 @@
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/'); ?>js/demo/datatables-demo.js"></script>
 
-<!-- CDN FontAwesome 6 -->
-<script src="https://kit.fontawesome.com/364dbf52ab.js" crossorigin="anonymous"></script>
+<!-- CDN CKEditor -->
+<script src="https://cdn.ckeditor.com/4.14.1/full-all/ckeditor.js"></script>
+
+<!-- Magnific Popup core JS file -->
+<script src="<?= base_url('assets/'); ?>vendor/magnify/jquery.magnific-popup.js"></script>
 
 <script>
     $(document).ready(function() {
         setTimeout(function() {
             $('#message').slideUp("slow");
         }, 2000);
+    });
+
+    $(document).ready(function() {
+        $('.image-link').magnificPopup({
+            type: 'image'
+        });
     });
 
     CKEDITOR.replace('editor1');

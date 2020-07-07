@@ -20,7 +20,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+                    <thead class="thead-dark">
                         <tr>
                             <th>#</th>
                             <th>Code Product</th>
@@ -39,7 +39,7 @@
                                 <td><?= $p['code_product']; ?></td>
                                 <td><?= $p['name']; ?></td>
                                 <td><?= $p['category']; ?></td>
-                                <td><img src="<?= base_url('assets/img/product/') . $p['image']; ?>" class="img-thumbnail" width="80" height="80" style="border: 1px solid;"></td>
+                                <td><img src="<?= base_url('assets/img/product/') . $p['image']; ?>" href="<?= base_url('assets/img/product/') . $p['image']; ?>" title="Click here to zoom image." class="img-thumbnail image-link" width="80" height="80" style="border: 1px solid;"></td>
                                 <?php if ($p['status'] == 1) : ?>
                                     <td>Active</td>
                                 <?php else : ?>
@@ -56,7 +56,6 @@
             </div>
         </div>
     </div>
-
 </div>
 <!-- /.container-fluid -->
 
