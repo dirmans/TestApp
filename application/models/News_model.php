@@ -10,6 +10,11 @@ class News_model extends CI_Model
         return $this->db->get('news')->result_array();
     }
 
+     public function getSomeNews()
+    {
+        return $this->db->query('SELECT * FROM news limit 4')->result_array();
+    }
+
     // FUNGSI INSERT NEWS
     public function insertNews($data)
     {
@@ -29,5 +34,11 @@ class News_model extends CI_Model
     {
         $this->db->where('id_news', $id);
         return $this->db->delete('news');
+    }
+
+    // FUNGSI READMORE
+    public function readmore($id_news)
+    {
+        return $this->db->query('SELECT news.title, news.content, news.image as gambar, news.create_by, news.create_date, user.image as gambar2, user.name FROM news inner join user on news.create_by = user.name where id_news ="'.$id_news.'"')->result_array(); 
     }
 }

@@ -83,7 +83,7 @@
                                 <div class="position-relative">
                                     <!--thumbnail img-->
                                     <div class="ratio_right-cover-2 image-wrapper">
-                                        <a href="https://bootstrap.news/bootstrap-4-template-news-portal-magazine/">
+                                        <a href="<?= base_url('indexi/readmore/').$row['id_news'] ?>">
                                             <img class="gambar"
                                             src="<?= base_url('assets/img/news/').$row['image'] ?>"
                                             alt="simple blog template bootstrap">
@@ -117,7 +117,5 @@
         <!--END SECTION-->
     </div>
 </div>
-<div style="padding-bottom: 50px">
 
-</div>
 <!--end code-->
