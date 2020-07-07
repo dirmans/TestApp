@@ -18,7 +18,7 @@ class News extends CI_Controller
         $data = [
             'title' => 'TEST - News',
             'user'  => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
-            'news'  => $this->News_model->getAllNews()
+            'news'  => $this->News_model->getAllNews(),
         ];
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

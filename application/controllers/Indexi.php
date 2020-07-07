@@ -28,11 +28,21 @@ class Indexi extends CI_Controller
 
 	public function news()
 	{
-		$data['news'] = $this->News_model->getAllNews();
+		$data['news'] = $this->News_model->getSomeNews();
 
 		$this->load->view('pages/template/header');
 		$this->load->view('pages/template/navbar');
 		$this->load->view('pages/news',$data);
+		$this->load->view('pages/template/footer');
+	}
+
+	public function readmore($id_news)
+	{
+		$data['readmore'] = $this->News_model->readmore($id_news);
+
+		$this->load->view('pages/template/header');
+		$this->load->view('pages/template/navbar');
+		$this->load->view('pages/readmore',$data);
 		$this->load->view('pages/template/footer');
 	}
 }
