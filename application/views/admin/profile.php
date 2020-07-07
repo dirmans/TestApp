@@ -2,14 +2,19 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Profile</h1>
+    <div class="row ml-0">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-gradient-primary">
+                <li class="breadcrumb-item"><a href="<?= base_url('home'); ?>" class="text-light">Home</a></li>
+                <li class="breadcrumb-item text-light" aria-current="page">Profile</li>
+            </ol>
+        </nav>
     </div>
 
     <!-- Content Row -->
     <div class="row col">
         <!-- Profile Image -->
-        <div class="card card-primary card-outline">
+        <div class="card card-primary border-left-primary shadow">
             <div class="card-body">
                 <div class="text-center">
                     <img class="img-thumbnail image-link mb-4" title="Click here to zoom image." href="<?= base_url('assets/img/profile/') . $user['image']; ?>" src="<?= base_url('assets/img/profile/') . $user['image']; ?>" width="200" height="200">
@@ -21,8 +26,8 @@
                 <a href="#" class="btn btn-danger btn-block"><i class="fab fa-fw fa-youtube"></i><b> Subscribe</b></a>
             </div>
         </div>
-        <div class="card card-primary">
-            <div class="card-header">
+        <div class="card card-primary border-primary shadow">
+            <div class="card-header border-primary">
                 <h3 class="card-title">About Me</h3>
             </div>
             <!-- /.card-header -->

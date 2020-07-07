@@ -2,10 +2,14 @@
 <div class="container-fluid">
 
 	<!-- Page Heading -->
-	<div class="d-sm-flex align-items-center justify-content-between mb-4">
-		<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+	<div class="row ml-0">
+		<nav aria-label="breadcrumb">
+			<ol class="breadcrumb bg-gradient-primary">
+				<li class="breadcrumb-item"><a href="<?= base_url('home'); ?>" class="text-light">Dashboard</a></li>
+			</ol>
+		</nav>
 	</div>
-
+	<hr class="sidebar-divider mt-0">
 	<!-- Content Row -->
 	<div class="row">
 

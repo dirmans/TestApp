@@ -2,22 +2,27 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Data Product</h1>
-    <div class="row mt-4">
-        <div class="col-lg-2 mb-2">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProductModel">
-                <i class="fas fa-fw fa-plus-circle"></i> Add Product
-            </button>
-        </div>
+    <div class="row ml-0">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-gradient-primary">
+                <li class="breadcrumb-item"><a href="<?= base_url('home'); ?>" class="text-light">Home</a></li>
+                <li class="breadcrumb-item active text-light" aria-current="page">Data Product</li>
+            </ol>
+        </nav>
     </div>
 
     <?= $this->session->flashdata('message'); ?>
     <!-- DataTales Product -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
+    <div class="card shadow border-primary mb-4">
+        <div class="card-header border-primary py-3">
             <h6 class="m-0 font-weight-bold text-primary">List Product </h6>
         </div>
         <div class="card-body">
+            <div class="row ml-1 mb-3">
+                <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#addProductModel">
+                    <i class="fas fa-fw fa-plus-circle"></i> Add Product
+                </button>
+            </div>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="thead-dark">

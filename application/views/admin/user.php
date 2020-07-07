@@ -2,17 +2,24 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Data User</h1>
+    <div class="row ml-0">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-gradient-primary">
+                <li class="breadcrumb-item"><a href="<?= base_url('home'); ?>" class="text-light">Home</a></li>
+                <li class="breadcrumb-item active text-light" aria-current="page">Data User</li>
+            </ol>
+        </nav>
+    </div>
     <?= $this->session->flashdata('message'); ?>
     <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
+    <div class="card border-primary shadow mb-4">
+        <div class="card-header border-primary py-3">
             <h6 class="m-0 font-weight-bold text-primary">List User </h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
+                    <thead class="thead-dark">
                         <tr>
                             <th>#</th>
                             <th>Name</th>
