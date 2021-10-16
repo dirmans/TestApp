@@ -1,5 +1,5 @@
-# test
-Test web application (On Progress)
+# README
+Test web application
 
 Jika ingin mencoba nya, harap edit terlebih dahulu pada model login.
 Pada bagian :
